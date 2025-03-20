@@ -10,8 +10,8 @@ const DataTable = ({ refresh }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Стан для модального вікна
 
   useEffect(() => {
-    //fetchData('http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/getAll');
-    fetchData('http://localhost:8080/api/observations/getAll');
+    fetchData('http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/getAll');
+    //fetchData('http://localhost:8080/api/observations/getAll');
   }, [refresh]);
 
   const fetchData = (url) => {
@@ -33,7 +33,7 @@ const DataTable = ({ refresh }) => {
   };
 
   const handleDeleteRow = (id) => {
-    axios.delete(`http://localhost:8080/api/observations/delete/${id}`)
+    axios.delete(`http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/delete/${id}`)
       .then(() => {
         setData(data.filter(observation => observation.id !== id));
       })
@@ -44,7 +44,7 @@ const DataTable = ({ refresh }) => {
 
   const handleSaveEdit = () => {
     const formattedDate = moment(editData.observationDate).format("YYYY-MM-DDTHH:mm:ss");
-    axios.put(`http://localhost:8080/api/observations/edit/${editData.id}`, {
+    axios.put(`http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/edit/${editData.id}`, {
       ...editData,
       observationDate: formattedDate
     })
@@ -76,13 +76,13 @@ const DataTable = ({ refresh }) => {
     <div>
       <h1>Дані з таблиці</h1>
       <div style={{ marginBottom: '20px' }}>
-                <button onClick={() => fetchData('http://localhost:8080/api/observations/getAll')}>
+                <button onClick={() => fetchData('http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/getAll')}>
                     Всі дані
                 </button>
-                <button onClick={() => fetchData('http://localhost:8080/api/observations/getPositiveTemperature')}>
+                <button onClick={() => fetchData('http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/getPositiveTemperature')}>
                     Температура більше 0
                 </button>
-                <button onClick={() => fetchData('http://localhost:8080/api/observations/getWithPrecipitation')}>
+                <button onClick={() => fetchData('http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/getWithPrecipitation')}>
                     Присутні опади
                 </button>
             </div>
