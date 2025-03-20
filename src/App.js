@@ -12,7 +12,7 @@ const App = () => {
       const formattedDate = moment(addData.observationDate).format("YYYY-MM-DDTHH:mm:ss");
 
       axios.post(`http://weatherspringbootapi-aganc0dbc2hub4cg.polandcentral-01.azurewebsites.net/api/observations/create`, {
-          ...addData,
+          ...addData, 
           observationDate: formattedDate
       })
       .then(() => {
